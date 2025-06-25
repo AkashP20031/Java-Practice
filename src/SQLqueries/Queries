@@ -1,0 +1,40 @@
+
+// SQL queries are practised on MySQL work bench//
+
+CREATE TABLE student.students (id INT PRIMARY KEY, name VARCHAR(50), age INT, grade CHAR(1) );
+
+INSERT INTO student.students (id, name, age, grade) VALUES (1, 'Akash', 22, 'A'), (2, 'Manju', 23, 'B'), (3, 'Jhon', 19, 'C');
+
+INSERT INTO student.students (id, name, age, grade) VALUES (4,'Prajwal', 25, 'A'),(5,'Kumar', 24, 'B'),(6,'Sindhu', 25, 'A');
+
+CREATE TABLE student.subject (sub_id INT PRIMARY KEY, sub_name VARCHAR(50),s_id INT, FOREIGN KEY (s_id) REFERENCES student.students(id));
+
+INSERT INTO student.subject (sub_id, sub_name, s_id) VALUES (1,'Physics', 1),(2,'Chemistry', 1),(3,'Math', 1);
+
+SELECT name, sub_name, grade from student.students S join student.subject Su on S.id = Su.s_id;
+
+SELECT * FROM student.students ORDER BY age;
+
+SELECT COUNT(*), age FROM student.students group by age order by age;
+
+SELECT COUNT(*), grade from student.students group by grade order by grade;
+
+SELECT COUNT(*), age FROM student.students group by age having count(id)>1 order by age;
+
+select * from student.students where name like 'A%';
+
+select * from student.students where age between 21 and 23;
+
+select * from student.students where age=25 or age = 24;
+
+select avg(age) from student.students;
+
+select max(age) from student.students;
+
+select min(age) from student.students;
+
+select sum(age) from student.students;
+
+select name from student.students union select sub_name from student.subject;
+
+select * from student.students where id in (select s_id from student.subject where sub_name='Physics');
