@@ -1,6 +1,6 @@
 package BasicArrayPrograms;
 public class BinarySearch {
-    static boolean binarySearch(int[] a,int key)
+    public static boolean binarySearch(int[] a,int key)
     {
         int low = 0;
         int high = a.length-1;
